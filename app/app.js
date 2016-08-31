@@ -1,5 +1,17 @@
 "use strict";
 
+var app = angular.module("TodoApp", []);
+
+app.controller("NavCtrl", function($scope) {
+  $scope.navItems = [
+    {name: "Logout"},
+    {name: "All Items"},
+    {name: "New Items"}
+  ];
+});
+
+app.controller("TodoCtrl", function($scope) {
+
 $scope.items = [
   {
     id: 0,
@@ -32,3 +44,21 @@ $scope.items = [
     dependencies: "hammock, silence"
   }
 ];
+$scope.newTask = {};
+$scope.showListView = true;
+
+$scope.newItem = function() {
+  $scope.showListView = false;
+};
+
+$scope.allItem = function() {
+  $scope.showListView = true;
+};
+
+$scope.addNewItem = function() {
+  $scope.newTask.isCompleted = false;
+  $scope.newTask.id = $scope.items.length;
+  $scope.items.push($scope.newTask);
+};
+
+});
